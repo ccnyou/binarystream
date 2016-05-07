@@ -15,10 +15,10 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     cc::binarystream bss;
-    bss << 0x20 << '\x20' << endl;
+    bss << 0x20 << '\x20' << "ok" << endl;
     const vector<char> &v = bss.vector();
     for (auto it = v.begin(); it != v.end(); ++it) {
-        cout << (int)*it << " ";
+        cout << (int)*it << ":(" << (char)*it << ")  ";
     }
     cout << endl;
     
