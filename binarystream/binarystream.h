@@ -36,31 +36,27 @@ namespace cc
 	class basic_binarybuf : public std::basic_streambuf<_CharT, _Traits>
 	{
 	public:
-		// Types:
-		typedef _CharT 					    char_type;
-		typedef _Traits 					traits_type;
-		// _GLIBCXX_RESOLVE_LIB_DEFECTS
-		// 251. basic_stringbuf missing allocator_type
-		typedef _Alloc				       	        allocator_type;
-		typedef typename traits_type::int_type 		int_type;
-		typedef typename traits_type::pos_type 		pos_type;
-		typedef typename traits_type::off_type 		off_type;
+		typedef _CharT                              char_type;
+		typedef _Traits                             traits_type;
+		typedef _Alloc                              allocator_type;
+		typedef typename traits_type::int_type      int_type;
+		typedef typename traits_type::pos_type      pos_type;
+		typedef typename traits_type::off_type      off_type;
 
-		typedef std::basic_streambuf<char_type, traits_type>  	streambuf_type;
+		typedef std::basic_streambuf<char_type, traits_type>    streambuf_type;
 		typedef std::vector<char_type, allocator_type>          vector_type;
-		typedef std::ios_base::openmode							openmode_type;
+		typedef std::ios_base::openmode                         openmode_type;
 
 	protected:
-		/// Place to stash in || out || in | out settings for current stringbuf.
-		openmode_type 			  _open_mode;
-		vector_type               _vector;
-		allocator_type		      _allocator;
+		openmode_type               _open_mode;
+		vector_type                 _vector;
+		allocator_type              _allocator;
 
 	public:
 		explicit basic_binarybuf(std::ios_base::openmode __mode = std::ios_base::in | std::ios_base::out)
 			: streambuf_type(), _open_mode(__mode), _vector()
-		{ 
-		}
+		{
+        }
 
 		vector_type vector() const
 		{
@@ -85,7 +81,7 @@ namespace cc
 		}
 
 		virtual int_type overflow(int_type meta = traits_type::eof())
-		{	
+		{
 			// put an element to stream when overflow
 			_vector.push_back(meta);
 			return meta;
@@ -97,23 +93,20 @@ namespace cc
 	class basic_binarystream : public std::basic_iostream<_CharT, _Traits>
 	{
 	public:
-		// Types:
-		typedef _CharT 					    char_type;
-		typedef _Traits 					traits_type;
-		// _GLIBCXX_RESOLVE_LIB_DEFECTS
-		// 251. basic_stringbuf missing allocator_type
-		typedef _Alloc				       	        allocator_type;
-		typedef typename traits_type::int_type 		int_type;
-		typedef typename traits_type::pos_type 		pos_type;
-		typedef typename traits_type::off_type 		off_type;
+		typedef _CharT                              char_type;
+		typedef _Traits                             traits_type;
+		typedef _Alloc                              allocator_type;
+		typedef typename traits_type::int_type      int_type;
+		typedef typename traits_type::pos_type      pos_type;
+		typedef typename traits_type::off_type      off_type;
 
-		// Non-standard Types:
-		typedef basic_binarybuf<_CharT, _Traits, _Alloc> 	    binarybuf_type;
-		typedef std::basic_iostream<char_type, traits_type>	    iostream_type;
-		typedef std::basic_ostream<char_type, traits_type>	    ostream_type;
+
+		typedef basic_binarybuf<_CharT, _Traits, _Alloc>        binarybuf_type;
+		typedef std::basic_iostream<char_type, traits_type>     iostream_type;
+		typedef std::basic_ostream<char_type, traits_type>      ostream_type;
 		typedef std::vector<char_type, allocator_type>          vector_type;
-		typedef basic_binarystream<_CharT, _Traits, _Alloc> 	binarystream_type;
-		typedef binary_num_put<char_type>						num_put_type;
+		typedef basic_binarystream<_CharT, _Traits, _Alloc>     binarystream_type;
+		typedef binary_num_put<char_type>                       num_put_type;
 
 	private:
 		mutable binarybuf_type	_binarybuf;
