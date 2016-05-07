@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "cc::binary_num_put&lt;char, std::__1::ostreambuf_iterator&lt;char, std::__1::char_traits&lt;char&gt; &gt; &gt;::~binary_num_put():binarystream.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "0x7fff5fbff600">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
