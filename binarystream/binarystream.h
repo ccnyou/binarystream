@@ -1,4 +1,4 @@
-#ifndef BASIC_BINARYBUF_H
+﻿#ifndef BASIC_BINARYBUF_H
 #define BASIC_BINARYBUF_H
 
 #include <istream>
