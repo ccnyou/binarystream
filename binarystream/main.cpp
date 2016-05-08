@@ -15,7 +15,8 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     cc::binarystream bss;
-    bss << 0x20 << '\x20' << "ok" << endl;
+    bss << "ok" << endl;
+	bss << 0x3131 << endl;
     const vector<char> &v = bss.vector();
     for (auto it = v.begin(); it != v.end(); ++it) {
         cout << (int)*it << ":(" << (char)*it << ")  ";

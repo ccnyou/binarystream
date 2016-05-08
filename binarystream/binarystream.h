@@ -13,7 +13,6 @@ namespace cc
     public:
         typedef binary_num_put<elem_type, out_it_type>	binary_num_put_type;
         typedef std::num_put<elem_type, out_it_type>	num_put_type;
-        virtual ~binary_num_put() {};
         
     protected:
         virtual out_it_type do_put(out_it_type dest_it,
@@ -42,12 +41,12 @@ namespace cc
         typedef typename traits_type::int_type      int_type;
         typedef typename traits_type::pos_type      pos_type;
         typedef typename traits_type::off_type      off_type;
-        
+
+	protected:
         typedef std::basic_streambuf<char_type, traits_type>    streambuf_type;
         typedef std::vector<char_type, allocator_type>          vector_type;
         typedef std::ios_base::openmode                         openmode_type;
         
-    protected:
         openmode_type               _open_mode;
         vector_type                 _vector;
         allocator_type              _allocator;
@@ -80,6 +79,12 @@ namespace cc
             streambuf_type::imbue(loc);
         }
         
+		virtual std::streamsize xsputn(const char_type *ptr, std::streamsize count)
+		{	// put _Count characters to stream
+			_vector.insert(_vector.end(), ptr, ptr + count);
+			return (count);
+		}
+
         virtual int_type overflow(int_type meta = traits_type::eof())
         {
             // put an element to stream when overflow

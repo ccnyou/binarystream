@@ -11,3 +11,4 @@
 *.log
 *.idb
 Debug/
+*.opensdf
